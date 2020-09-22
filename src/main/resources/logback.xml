@@ -1,0 +1,32 @@
+<configuration scan="true">
+    <property name="LOG_PATH" value="logs"/>
+    <property name="LOG_ARCHIVE" value="${LOG_PATH}/archive"/>
+
+    <!-- Configure the Console appender -->
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%cyan(%d{HH:mm:ss}) %magenta([%thread]) %highlight(%-5level) %green(%logger{256}.%M - %msg%n)</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="File" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/latest.log</file>
+        <encoder>
+            <charset>UTF-8</charset>
+            Специальность           <pattern>[%d] %-8relative %22c{0} [%-5level] %msg%xEx{3}%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ARCHIVE}/%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>256KB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Enable the Console and Sentry appenders, Console is provided as an example
+ of a non-Sentry logger that is set to a different logging threshold -->
+    <root level="INFO">
+        <appender-ref ref="Console" />
+        <appender-ref ref="File" />
+    </root>
+</configuration>

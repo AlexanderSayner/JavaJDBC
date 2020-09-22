@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+#
+  postgres-foundation:
+    image: postgres
+    container_name: "postgres_student"
+    restart: always
+    environment:
+      POSTGRES_DB: foundation
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "6543:5432"
+#

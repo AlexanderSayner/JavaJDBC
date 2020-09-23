@@ -4,23 +4,44 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.core.io.ClassPathResource;
 
+import java.io.IOException;
 import java.sql.*;
+import java.util.*;
 
 @SpringBootApplication
 public class JdbcDemoApplication {
     private static final Logger logger = LoggerFactory.getLogger(JdbcDemoApplication.class);
-    private static final String DB_URL = "jdbc:postgresql://25.33.103.29:6543/postgres";
-    private static final String USER = "docker";
-    private static final String PASS = "secret";
+    private static final String DB_URL = "DB_URL";
+    private static final String DB_USER = "DB_USER";
+    private static final String DB_PWD = "DB_PWD";
 
     public static void main(String[] args) {
         logger.info("Starting application");
-        createDatabase();
+        Map<String,String> properties=readPropertiesFile();
+        createDatabase(properties.get(DB_URL),properties.get(DB_USER),properties.get(DB_PWD));
         SpringApplication.run(JdbcDemoApplication.class, args);
     }
 
-    protected static void createDatabase() {
+    private static Map<String,String> readPropertiesFile() {
+        final ClassPathResource resource = new ClassPathResource("application.properties");
+        final Properties properties = new Properties();
+        try {
+            logger.info("Trying to read properties file");
+            properties.load(resource.getInputStream());
+        } catch (IOException e) {
+            logger.error("application.properties could not be open: {}",e.getMessage());
+            e.printStackTrace();
+        }
+        Map<String,String> credentials=new HashMap<>();
+        credentials.put(DB_URL,properties.getProperty(DB_URL));
+        credentials.put(DB_USER,properties.getProperty(DB_USER));
+        credentials.put(DB_PWD,properties.getProperty(DB_PWD));
+        return credentials;
+    }
+
+    protected static void createDatabase(String DB_URL, String DB_USER, String DB_PWD) {
         logger.info("Testing connection to PostgreSQL JDBC");
 
         try {
@@ -36,7 +57,7 @@ public class JdbcDemoApplication {
 
         try {
             connection = DriverManager
-                    .getConnection(DB_URL, USER, PASS);
+                    .getConnection(DB_URL, DB_USER, DB_PWD);
 
         } catch (SQLException e) {
             logger.error("Connection Failed");

@@ -1,11 +1,11 @@
 databaseChangeLog:
   - changeSet:
-      id: 1
+      id: 5
       author: alex
       changes:
         - createTable:
             schemaName: basic
-            tableName: person
+            tableName: department
             columns:
               - column:
                   name: id
@@ -15,13 +15,5 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: firstname
-                  type: varchar(50)
-              - column:
-                  name: lastname
-                  type: varchar(50)
-                  constraints:
-                    nullable: false
-              - column:
-                  name: state
-                  type: char(2)
+                  name: name
+                  type: varchar(200)

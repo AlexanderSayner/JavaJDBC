@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7
+      author: alex
+      changes:
+        - createTable:
+            schemaName: basic
+            tableName: report
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: client_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: topic
+                  type: varchar(15)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: message
+                  type: varchar(500)
+                  constraints:
+                    nullable: false

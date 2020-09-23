@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: alex
+      changes:
+        - createTable:
+            schemaName: basic
+            tableName: project_state
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: project_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: state
+                  type: varchar(20)
+              - column:
+                  name: start_date
+                  type: date
+              - column:
+                  name: end_date
+                  type: date

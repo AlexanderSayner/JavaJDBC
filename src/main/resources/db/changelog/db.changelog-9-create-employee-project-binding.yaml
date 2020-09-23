@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 9
+      author: alex
+      changes:
+        - createTable:
+            schemaName: basic
+            tableName: employee_project
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: employee_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: project_id
+                  type: int
+                  constraints:
+                    nullable: false

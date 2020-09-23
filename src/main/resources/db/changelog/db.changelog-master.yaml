@@ -6,4 +6,22 @@ databaseChangeLog:
         - sql: CREATE SCHEMA basic
 
   - include:
-      file: db/changelog/db.changelog-1-create-person-table.yaml
+      file: db/changelog/db.changelog-1-create-employee-table.yaml
+  - include:
+      file: db/changelog/db.changelog-2-create-project-table.yaml
+  - include:
+      file: db/changelog/db.changelog-3-create-project-state-table.yaml
+  - include:
+      file: db/changelog/db.changelog-4-create-employee-role-table.yaml
+  - include:
+      file: db/changelog/db.changelog-5-create-department-table.yaml
+  - include:
+      file: db/changelog/db.changelog-6-create-client-table.yaml
+  - include:
+      file: db/changelog/db.changelog-7-create-report-table.yaml
+  - include:
+      file: db/changelog/db.changelog-8-create-employee-department-binding.yaml
+  - include:
+      file: db/changelog/db.changelog-9-create-employee-project-binding.yaml
+  - include:
+      file: db/changelog/db.changelog-10-create-employee-and-role-binding.yaml

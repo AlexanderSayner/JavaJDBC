@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 6
+      author: alex
+      changes:
+        - createTable:
+            schemaName: basic
+            tableName: client
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: state
+                  type: char(2)
+              - column:
+                  name: email
+                  type: varchar(50)

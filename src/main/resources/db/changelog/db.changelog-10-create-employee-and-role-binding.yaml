@@ -1,0 +1,26 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: alex
+      changes:
+        - createTable:
+            schemaName: basic
+            tableName: employee_and_role
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: employee_id
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: employee_role_id
+                  type: int
+                  constraints:
+                    nullable: false

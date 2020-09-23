@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: alex
+      changes:
+        - createTable:
+            schemaName: basic
+            tableName: project
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: open_date
+                  type: date
+              - column:
+                  name: release_date
+                  type: date

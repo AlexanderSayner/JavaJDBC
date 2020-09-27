@@ -24,7 +24,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: state
-                  type: char(2)
+                  type: varchar(2)
               - column:
                   name: email
                   type: varchar(50)

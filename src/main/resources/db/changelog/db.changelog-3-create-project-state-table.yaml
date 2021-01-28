@@ -21,7 +21,7 @@ databaseChangeLog:
                     nullable: false
               - column:
                   name: state
-                  type: varchar(20)
+                  type: varchar(255)
               - column:
                   name: start_date
                   type: date

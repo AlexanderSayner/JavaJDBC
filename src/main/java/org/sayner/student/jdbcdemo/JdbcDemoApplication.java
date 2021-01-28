@@ -19,25 +19,25 @@ public class JdbcDemoApplication {
 
     public static void main(String[] args) {
         logger.info("Starting application");
-        Map<String,String> properties=readPropertiesFile();
-        createDatabase(properties.get(DB_URL),properties.get(DB_USER),properties.get(DB_PWD));
+        final Map<String, String> properties = readPropertiesFile();
+        createDatabase(properties.get(DB_URL), properties.get(DB_USER), properties.get(DB_PWD));
         SpringApplication.run(JdbcDemoApplication.class, args);
     }
 
-    private static Map<String,String> readPropertiesFile() {
+    private static Map<String, String> readPropertiesFile() {
         final ClassPathResource resource = new ClassPathResource("application.properties");
         final Properties properties = new Properties();
         try {
             logger.info("Trying to read properties file");
             properties.load(resource.getInputStream());
         } catch (IOException e) {
-            logger.error("application.properties could not be open: {}",e.getMessage());
+            logger.error("application.properties could not be open: {}", e.getMessage());
             e.printStackTrace();
         }
-        Map<String,String> credentials=new HashMap<>();
-        credentials.put(DB_URL,properties.getProperty(DB_URL));
-        credentials.put(DB_USER,properties.getProperty(DB_USER));
-        credentials.put(DB_PWD,properties.getProperty(DB_PWD));
+        Map<String, String> credentials = new HashMap<>();
+        credentials.put(DB_URL, properties.getProperty(DB_URL));
+        credentials.put(DB_USER, properties.getProperty(DB_USER));
+        credentials.put(DB_PWD, properties.getProperty(DB_PWD));
         return credentials;
     }
 
